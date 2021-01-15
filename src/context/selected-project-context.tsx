@@ -1,15 +1,16 @@
 import React, { createContext, FC, useContext, useState } from 'react';
 
 interface ISelectedProjectProvider {
-  selectedProject: String;
-  setSelectedProject: React.Dispatch<React.SetStateAction<String>>;
+  selectedProject: string | null;
+  setSelectedProject: React.Dispatch<React.SetStateAction<string>> | undefined;
 }
-const SelectedProjectContext = createContext<ISelectedProjectProvider | null>(
-  null
-);
+const SelectedProjectContext = createContext<ISelectedProjectProvider>({
+  selectedProject: null,
+  setSelectedProject: undefined,
+});
 
 export const SelectedProjectProvider: FC = ({ children }) => {
-  const [selectedProject, setSelectedProject] = useState<String>('INBOX');
+  const [selectedProject, setSelectedProject] = useState<string>('INBOX');
 
   return (
     <SelectedProjectContext.Provider

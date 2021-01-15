@@ -3,6 +3,8 @@ import { firebase } from '../firebase';
 export interface Project {
   userId: string;
   docId: string;
+  projectId: string;
+  name: string;
 }
 export const useProjects = () => {
   const [projects, setProjects] = useState<Project[] | null>(null);
@@ -10,7 +12,7 @@ export const useProjects = () => {
     firebase
       .firestore()
       .collection('projects')
-      .where('userId', '==', '=(18IK')
+      .where('userId', '==', 'b4a5qGa')
       .orderBy('projectId')
       .get()
       .then((snapshot) => {
