@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { firebase } from '../firebase';
-interface Project {
+export interface Project {
   userId: string;
   docId: string;
 }
@@ -27,4 +27,5 @@ export const useProjects = () => {
       });
     return () => {};
   }, [projects]);
+  return { projects, setProjects };
 };
