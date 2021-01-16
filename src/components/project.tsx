@@ -26,30 +26,40 @@ const ProjectComponent = ({ project }: Props) => {
   return (
     <div>
       <span className="sidebar__dot">•</span>
-      <span className="sidebar__project-name">{project.name}</span>
+      <span className="sidebar__project-name">
+        {showConfirm}
+        {project.name}
+      </span>
       <span
         className="sidebar__project-delete"
-        data-testId="delete-project"
+        data-testid="delete-project"
         onClick={() => setShowConfirm(true)}
       >
         <FaTrashAlt />
-        {showConfirm && (
-          <div className="project-delete-modal">
-            <div className="project-delete-modal__inner">
-              <p>Are you sure you want to delete this project?</p>
-              <button
-                type="button"
-                onClick={() => deleteProject(project.docId)}
-              >
-                Delete
-              </button>
-              <button type="button" onClick={() => setShowConfirm(false)}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
       </span>
+      {showConfirm && (
+        <div className="project-delete-modal">
+          <div className="project-delete-modal__inner">
+            <p>Are you sure you want to delete this project?</p>
+            <button
+              type="button"
+              className="accept"
+              onClick={() => deleteProject(project.docId)}
+            >
+              Delete
+            </button>
+            <button
+              className="cancel"
+              onClick={(e) => {
+                e.preventDefault();
+                setShowConfirm(false);
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

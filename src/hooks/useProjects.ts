@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { firebase } from '../firebase';
+import { isEqual } from 'lodash';
 export interface Project {
   userId: string;
   docId: string;
@@ -15,15 +16,14 @@ export const useProjects = () => {
       .where('userId', '==', 'b4a5qGa')
       .orderBy('projectId')
       .get()
-      .then((snapshot) => {
-        const allProjects = snapshot.docs.map((project) => ({
+      .then((snapshot: any) => {
+        const allProjects = snapshot?.docs.map((project: any) => ({
           ...project.data(),
           docId: project.id,
         })) as Project[];
-        if (
-          JSON.stringify(allProjects, null, 2) !==
-          JSON.stringify(projects, null, 2)
-        ) {
+        console.log(!isEqual(allProjects, projects));
+        if (!isEqual(allProjects, projects)) {
+          console.log(JSON.stringify(allProjects), JSON.stringify(projects));
           setProjects(allProjects);
         }
       });

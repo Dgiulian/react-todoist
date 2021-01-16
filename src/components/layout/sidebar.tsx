@@ -6,6 +6,7 @@ import {
   FaRegCalendar,
 } from 'react-icons/fa';
 import { useSelectedProjectValue } from '../../context';
+import { AddProject } from '../add-project';
 import { Projects } from '../projects';
 export function Sidebar(): ReactElement {
   const { setSelectedProject } = useSelectedProjectValue();
@@ -48,6 +49,7 @@ export function Sidebar(): ReactElement {
       <ul className="sidebar__projects">
         {showProjects && <Projects activeValue={active} />}
       </ul>
+      {showProjects && <AddProject />}
     </div>
   );
 }
