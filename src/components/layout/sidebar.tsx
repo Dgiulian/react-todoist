@@ -1,4 +1,5 @@
 import React, { ReactElement, useState } from 'react';
+import classnames from 'classnames';
 import {
   FaChevronDown,
   FaInbox,
@@ -15,7 +16,14 @@ export function Sidebar(): ReactElement {
   return (
     <div className="sidebar" data-testid="sidebar">
       <ul className="sidebar__generic">
-        <li className="inbox" data-testid="inbox">
+        <li
+          className={classnames({ inbox: true, active })}
+          data-testid="inbox"
+          onClick={() => {
+            setActive('INBOX');
+            setSelectedProject!('INBOX');
+          }}
+        >
           <div>
             <span>
               <FaInbox />
@@ -23,7 +31,14 @@ export function Sidebar(): ReactElement {
             <span>Inbox</span>
           </div>
         </li>
-        <li className="today" data-testid="today">
+        <li
+          className={classnames({ today: true, active })}
+          data-testid="today"
+          onClick={() => {
+            setActive('today');
+            setSelectedProject!('TODAY');
+          }}
+        >
           <div>
             <span>
               <FaRegCalendar />
@@ -31,7 +46,14 @@ export function Sidebar(): ReactElement {
             <span>Today</span>
           </div>
         </li>
-        <li className="next_7" data-testid="next_7">
+        <li
+          className={classnames({ next_7: true, active })}
+          data-testid="next_7"
+          onClick={() => {
+            setActive('next_7');
+            setSelectedProject!('NEXT_7');
+          }}
+        >
           <div>
             <span>
               <FaRegCalendarAlt />
@@ -40,7 +62,10 @@ export function Sidebar(): ReactElement {
           </div>
         </li>
       </ul>
-      <div className="sidebar__middle">
+      <div
+        className="sidebar__middle"
+        onClick={() => setShowProjects((show) => !show)}
+      >
         <span>
           <FaChevronDown />
         </span>
