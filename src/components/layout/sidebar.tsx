@@ -17,10 +17,10 @@ export function Sidebar(): ReactElement {
     <div className="sidebar" data-testid="sidebar">
       <ul className="sidebar__generic">
         <li
-          className={classnames({ inbox: true, active })}
+          className={classnames({ inbox: true, active: active === 'inbox' })}
           data-testid="inbox"
           onClick={() => {
-            setActive('INBOX');
+            setActive('inbox');
             setSelectedProject!('INBOX');
           }}
         >
@@ -32,7 +32,7 @@ export function Sidebar(): ReactElement {
           </div>
         </li>
         <li
-          className={classnames({ today: true, active })}
+          className={classnames({ today: true, active: active === 'today' })}
           data-testid="today"
           onClick={() => {
             setActive('today');
@@ -47,7 +47,7 @@ export function Sidebar(): ReactElement {
           </div>
         </li>
         <li
-          className={classnames({ next_7: true, active })}
+          className={classnames({ next_7: true, active: active === 'next_7' })}
           data-testid="next_7"
           onClick={() => {
             setActive('next_7');

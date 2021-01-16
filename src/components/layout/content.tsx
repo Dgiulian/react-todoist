@@ -6,9 +6,9 @@ interface Props {}
 
 export const Content = (props: Props) => {
   return (
-    <div>
+    <section className="content">
       <Sidebar />
       <Tasks />
-    </div>
+    </section>
   );
 };
