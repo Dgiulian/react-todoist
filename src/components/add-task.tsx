@@ -33,7 +33,7 @@ export const AddTask = ({
     } else if (project === 'NEXT_7') {
       collatedDate = format(addDays(new Date(), 7), 'yyyy-mm-dd');
     }
-    if (task && project) {
+    if (task && projectId) {
       firebase
         .firestore()
         .collection('tasks')
