@@ -74,7 +74,7 @@ export function Sidebar(): ReactElement {
       <ul className="sidebar__projects">
         {showProjects && <Projects activeValue={active} />}
       </ul>
-      {showProjects && <AddProject />}
+      {showProjects && <AddProject shouldShow={false} />}
     </div>
   );
 }
