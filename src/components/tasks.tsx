@@ -34,7 +34,7 @@ export const Tasks = (props: Props) => {
       </ul>
       <AddTask
         showAddTaskMain={true}
-        showShouldMain={false}
+        shouldShowMain={false}
         showQuickAddTask={false}
         setShowQuickAddTask={() => {}}
       />

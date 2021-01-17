@@ -11,7 +11,6 @@ interface Props {
 
 function App({ darkModeDefault = false }: Partial<Props>) {
   const [darkMode, setDarkMode] = useState(darkModeDefault);
-  console.log(darkMode);
   return (
     <ProjectProvider>
       <SelectedProjectProvider>

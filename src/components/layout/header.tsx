@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { FaPizzaSlice } from 'react-icons/fa';
+import { AddTask } from '../add-task';
 interface Props {
   darkMode: boolean;
   setDarkMode: Dispatch<SetStateAction<boolean>>;
@@ -16,19 +17,37 @@ export const Header = ({ darkMode, setDarkMode }: Props) => {
         <div className="settings">
           <ul>
             <li data-testid="quick-add-task-action" className="settings__add">
-              +
+              <button
+                data-testid="quick-add-task-action"
+                aria-label="Quick add task"
+                type="button"
+                onClick={() => {
+                  setShowQuickAddTask(true);
+                  setShouldShowMain(true);
+                }}
+              >
+                {' '}
+                +
+              </button>
             </li>
-            <li
-              data-testid="dark-mode-action"
-              className="settings__darkmode"
-              onClick={() => setDarkMode(!darkMode)}
-              onKeyDown={(e) => e.key === 'ENTER' && setDarkMode(!darkMode)}
-            >
-              <FaPizzaSlice />
+            <li className="settings__darkmode">
+              <button
+                data-testid="dark-mode-action"
+                onClick={() => setDarkMode(!darkMode)}
+                onKeyDown={(e) => e.key === 'ENTER' && setDarkMode(!darkMode)}
+              >
+                <FaPizzaSlice />
+              </button>
             </li>
           </ul>
         </div>
       </nav>
+      <AddTask
+        showAddTaskMain={false}
+        shouldShowMain={shouldShowMain}
+        showQuickAddTask={showQuickAddTask}
+        setShowQuickAddTask={setShowQuickAddTask}
+      />
     </header>
   );
 };
