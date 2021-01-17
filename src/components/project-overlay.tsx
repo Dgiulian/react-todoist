@@ -13,17 +13,27 @@ export const ProjectOverlay = ({
   setShowProjectOverlay,
 }: Props) => {
   const { projects } = useProjectValues();
+  const handleSelectProject = (projectId: string) => {
+    setProject(projectId);
+    setShowProjectOverlay(false);
+  };
   if (!projects || !showProjectOverlay) return null;
   return (
     <div className="project-overlay" data-testid="project-overlay">
       <ul className="project-overlay__list">
         {projects.map((project) => (
-          <li
-            key={project.projectId}
-            data-testid="project-overlay-action"
-            onClick={() => setProject(project.projectId)}
-          >
-            {project.name}
+          <li key={project.projectId}>
+            <div
+              data-testid="project-overlay-action"
+              onClick={() => handleSelectProject(project.projectId)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleSelectProject(project.projectId);
+                }
+              }}
+            >
+              {project.name}
+            </div>
           </li>
         ))}
       </ul>

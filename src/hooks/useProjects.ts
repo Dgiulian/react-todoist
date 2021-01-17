@@ -22,7 +22,6 @@ export const useProjects = () => {
           docId: project.id,
         })) as Project[];
         if (!isEqual(allProjects, projects)) {
-          console.log(JSON.stringify(allProjects), JSON.stringify(projects));
           setProjects(allProjects);
         }
       });

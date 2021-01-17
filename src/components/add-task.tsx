@@ -5,6 +5,7 @@ import { useSelectedProjectValue } from '../context';
 import { format, addDays } from 'date-fns';
 import classNames from 'classnames';
 import { ProjectOverlay } from './project-overlay';
+import { TaskDate } from './task-date';
 
 interface Props {
   showAddTaskMain: boolean;
@@ -96,7 +97,11 @@ export const AddTask = ({
             showProjectOverlay={showPojectOverlay}
             setShowProjectOverlay={setShowPojectOverlay}
           />
-          <p>TaskDate here</p>
+          <TaskDate
+            setTaskDate={setTaskDate}
+            showTaskDate={showTaskDate}
+            setShowTaskDate={setShowTaskDate}
+          />
           <input
             type="text"
             className="add-task__content"
@@ -132,14 +137,14 @@ export const AddTask = ({
           <span
             className="add-task__project"
             data-testid="show-project-overlay"
-            onClick={() => setShowPojectOverlay(!setShowPojectOverlay)}
+            onClick={() => setShowPojectOverlay(!showPojectOverlay)}
           >
             <FaRegListAlt />
           </span>
           <span
             className="add-task__date"
             data-testid="show-project-overlay"
-            onClick={() => setShowTaskDate(!setShowTaskDate)}
+            onClick={() => setShowTaskDate(!showTaskDate)}
           >
             <FaRegCalendarAlt />
           </span>
