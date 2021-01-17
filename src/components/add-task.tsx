@@ -4,6 +4,7 @@ import { firebase } from '../firebase';
 import { useSelectedProjectValue } from '../context';
 import { format, addDays } from 'date-fns';
 import classNames from 'classnames';
+import { ProjectOverlay } from './project-overlay';
 
 interface Props {
   showAddTaskMain: boolean;
@@ -90,6 +91,12 @@ export const AddTask = ({
               </div>
             </>
           )}
+          <ProjectOverlay
+            setProject={setProject}
+            showProjectOverlay={showPojectOverlay}
+            setShowProjectOverlay={setShowPojectOverlay}
+          />
+          <p>TaskDate here</p>
           <input
             type="text"
             className="add-task__content"
