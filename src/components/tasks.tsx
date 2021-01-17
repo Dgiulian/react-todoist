@@ -4,6 +4,7 @@ import { Checkbox } from './checkbox';
 import { getTitle, getCollatedTitle, collatedTasksExists } from '../helpers';
 import { useSelectedProjectValue, useProjectValues } from '../context';
 import { collatedTasks } from '../constants';
+import { AddTask } from './add-task';
 interface Props {}
 export const Tasks = (props: Props) => {
   const { selectedProject } = useSelectedProjectValue();
@@ -31,6 +32,12 @@ export const Tasks = (props: Props) => {
           </li>
         ))}
       </ul>
+      <AddTask
+        showAddTaskMain={true}
+        showShouldMain={false}
+        showQuickAddTask={false}
+        setShowQuickAddTask={() => {}}
+      />
     </div>
   );
 };
