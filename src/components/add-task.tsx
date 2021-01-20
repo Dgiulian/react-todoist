@@ -6,6 +6,7 @@ import { format, addDays } from 'date-fns';
 import classNames from 'classnames';
 import { ProjectOverlay } from './project-overlay';
 import { TaskDate } from './task-date';
+import { handleKeyDown } from '../helpers';
 
 interface Props {
   showAddTaskMain: boolean;
@@ -67,6 +68,9 @@ export const AddTask = ({
           className="add-task__shallow"
           data-testid="show-main-action"
           onClick={() => setShowMain(!showMain)}
+          onKeyDown={handleKeyDown(() => setShowMain(!showMain))}
+          role="button"
+          tabIndex={0}
         >
           <span className="add-task__plus">+</span>
           <span className="add-task__text">Add Task</span>
@@ -81,11 +85,18 @@ export const AddTask = ({
                 <span
                   className="add-task__cancel-x"
                   data-testid="add-task-quick-cancel"
+                  role="button"
+                  tabIndex={0}
                   onClick={() => {
                     setShowMain(false);
                     setShowPojectOverlay(false);
                     setShowQuickAddTask(false);
                   }}
+                  onKeyDown={handleKeyDown(() => {
+                    setShowMain(false);
+                    setShowPojectOverlay(false);
+                    setShowQuickAddTask(false);
+                  })}
                 >
                   X
                 </span>
@@ -120,6 +131,12 @@ export const AddTask = ({
                   setShowQuickAddTask(false);
                 }
               }}
+              onKeyDown={handleKeyDown(() => {
+                addTask();
+                if (showQuickAddTask) {
+                  setShowQuickAddTask(false);
+                }
+              })}
             >
               Add task
             </button>
@@ -127,10 +144,16 @@ export const AddTask = ({
               <span
                 className="add-task__cancel"
                 data-testid="add-task-main-cancel"
+                role="button"
+                tabIndex={0}
                 onClick={() => {
                   setShowMain(false);
                   setShowPojectOverlay(false);
                 }}
+                onKeyDown={handleKeyDown(() => {
+                  setShowMain(false);
+                  setShowPojectOverlay(false);
+                })}
               >
                 Cancel
               </span>
@@ -138,14 +161,22 @@ export const AddTask = ({
             <span
               className="add-task__project"
               data-testid="show-project-overlay"
+              role="button"
+              tabIndex={0}
               onClick={() => setShowPojectOverlay(!showPojectOverlay)}
+              onKeyDown={handleKeyDown(() =>
+                setShowPojectOverlay(!showPojectOverlay)
+              )}
             >
               <FaRegListAlt />
             </span>
             <span
               className="add-task__date"
               data-testid="show-project-overlay"
+              role="button"
+              tabIndex={0}
               onClick={() => setShowTaskDate(!showTaskDate)}
+              onKeyDown={handleKeyDown(() => setShowTaskDate(!showTaskDate))}
             >
               <FaRegCalendarAlt />
             </span>

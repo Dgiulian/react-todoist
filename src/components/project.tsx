@@ -24,7 +24,7 @@ const ProjectComponent = ({ project }: Props) => {
       });
   };
   return (
-    <div>
+    <>
       <span className="sidebar__dot">•</span>
       <span className="sidebar__project-name">
         {showConfirm}
@@ -60,7 +60,7 @@ const ProjectComponent = ({ project }: Props) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

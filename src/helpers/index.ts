@@ -33,3 +33,9 @@ export const generatePushId = (() => {
     return id;
   };
 })();
+
+export const handleKeyDown = (cb: () => void) => (
+  event: React.KeyboardEvent<HTMLElement>
+) => {
+  if (event.key === 'ENTER') cb();
+};

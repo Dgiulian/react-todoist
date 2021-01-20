@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import { useProjectValues, useSelectedProjectValue } from '../context';
+import { handleKeyDown } from '../helpers';
 import { Project } from './project';
 
 interface Props {
@@ -24,12 +25,19 @@ export function Projects({ activeValue }: Props): ReactElement {
                 ? 'active sidebar__project'
                 : 'sidebar__project'
             }
-            onClick={() => {
-              setActive(project.projectId);
-              if (setSelectedProject) setSelectedProject(project.projectId);
-            }}
           >
-            <Project project={project} />
+            <button
+              onKeyDown={handleKeyDown(() => {
+                setActive(project.projectId);
+                if (setSelectedProject) setSelectedProject(project.projectId);
+              })}
+              onClick={() => {
+                setActive(project.projectId);
+                if (setSelectedProject) setSelectedProject(project.projectId);
+              }}
+            >
+              <Project project={project} />
+            </button>
           </li>
         ))}
     </>
