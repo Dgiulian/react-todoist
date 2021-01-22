@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { FaPizzaSlice } from 'react-icons/fa';
+import { handleKeyDown } from '../../helpers';
 import { AddTask } from '../add-task';
 interface Props {
   darkMode: boolean;
@@ -16,7 +17,7 @@ export const Header = ({ darkMode, setDarkMode }: Props) => {
         </div>
         <div className="settings">
           <ul>
-            <li data-testid="quick-add-task-action" className="settings__add">
+            <li className="settings__add">
               <button
                 data-testid="quick-add-task-action"
                 aria-label="Quick add task"
@@ -25,8 +26,11 @@ export const Header = ({ darkMode, setDarkMode }: Props) => {
                   setShowQuickAddTask(true);
                   setShouldShowMain(true);
                 }}
+                onKeyDown={handleKeyDown(() => {
+                  setShowQuickAddTask(true);
+                  setShouldShowMain(true);
+                })}
               >
-                {' '}
                 +
               </button>
             </li>
