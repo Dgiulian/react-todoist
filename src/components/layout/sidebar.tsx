@@ -9,6 +9,7 @@ import {
 import { useSelectedProjectValue } from '../../context';
 import { AddProject } from '../add-project';
 import { Projects } from '../projects';
+import { handleKeyDown } from '../../helpers';
 export function Sidebar(): ReactElement {
   const { setSelectedProject } = useSelectedProjectValue();
   const [active, setActive] = useState('inbox');
@@ -19,12 +20,19 @@ export function Sidebar(): ReactElement {
         <li
           className={classnames({ inbox: true, active: active === 'inbox' })}
           data-testid="inbox"
-          onClick={() => {
-            setActive('inbox');
-            setSelectedProject!('INBOX');
-          }}
         >
-          <div>
+          <div
+            role="button"
+            data-testid="inbox-action"
+            onClick={() => {
+              setActive('inbox');
+              setSelectedProject!('INBOX');
+            }}
+            onKeyDown={handleKeyDown(() => {
+              setActive('inbox');
+              setSelectedProject!('INBOX');
+            })}
+          >
             <span>
               <FaInbox />
             </span>
@@ -34,12 +42,19 @@ export function Sidebar(): ReactElement {
         <li
           className={classnames({ today: true, active: active === 'today' })}
           data-testid="today"
-          onClick={() => {
-            setActive('today');
-            setSelectedProject!('TODAY');
-          }}
         >
-          <div>
+          <div
+            role="button"
+            data-testid="today-action"
+            onClick={() => {
+              setActive('today');
+              setSelectedProject!('TODAY');
+            }}
+            onKeyDown={handleKeyDown(() => {
+              setActive('today');
+              setSelectedProject!('TODAY');
+            })}
+          >
             <span>
               <FaRegCalendar />
             </span>
@@ -49,12 +64,18 @@ export function Sidebar(): ReactElement {
         <li
           className={classnames({ next_7: true, active: active === 'next_7' })}
           data-testid="next_7"
-          onClick={() => {
-            setActive('next_7');
-            setSelectedProject!('NEXT_7');
-          }}
         >
-          <div>
+          <div
+            data-testid="next_7-action"
+            onClick={() => {
+              setActive('next_7');
+              setSelectedProject!('NEXT_7');
+            }}
+            onKeyDown={handleKeyDown(() => {
+              setActive('next_7');
+              setSelectedProject!('NEXT_7');
+            })}
+          >
             <span>
               <FaRegCalendarAlt />
             </span>
@@ -65,6 +86,7 @@ export function Sidebar(): ReactElement {
       <div
         className="sidebar__middle"
         onClick={() => setShowProjects((show) => !show)}
+        onKeyDown={handleKeyDown(() => setShowProjects((show) => !show))}
       >
         <span>
           <FaChevronDown />

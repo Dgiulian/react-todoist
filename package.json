@@ -28,7 +28,8 @@
     "collectCoverageFrom": [
       "src/**/*.tsx",
       "src/**/*.ts",
-      "!src/index.js",
+      "!src/**/constants.js",
+      "!src/index.tsx",
       "!src/firebase.ts",
       "!src/hooks/*.ts",
       "!src/context/*.ts"

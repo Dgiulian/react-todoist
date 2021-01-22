@@ -226,7 +226,7 @@ describe('<AddTask />', () => {
       'I am a new task and I am amazing!'
     );
 
-    fireEvent.click(queryByTestId('add-task'));
+    fireEvent.keyDown(queryByTestId('add-task'), Keys.Enter);
     await waitFor(() =>
       expect(queryByText('I am a new task and I am amazing!')).toBeNull()
     );

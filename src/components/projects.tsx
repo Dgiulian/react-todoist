@@ -30,11 +30,11 @@ export function Projects({ activeValue }: Props): ReactElement {
               data-testid="project-action"
               onClick={() => {
                 setActive(project.projectId);
-                if (setSelectedProject) setSelectedProject(project.projectId);
+                setSelectedProject!(project.projectId);
               }}
               onKeyDown={handleKeyDown(() => {
                 setActive(project.projectId);
-                if (setSelectedProject) setSelectedProject(project.projectId);
+                setSelectedProject!(project.projectId);
               })}
             >
               <Project project={project} />

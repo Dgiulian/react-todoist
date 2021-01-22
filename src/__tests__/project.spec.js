@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import { Project } from '../components/project';
-import { Keys } from './constants';
+import { Keys } from '../constants';
 
 beforeEach(cleanup);
 

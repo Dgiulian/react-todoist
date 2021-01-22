@@ -7,7 +7,7 @@ import {
   queryByText,
 } from '@testing-library/react';
 import { AddProject } from '../components/add-project';
-import { Keys } from './constants';
+import { Keys } from '../constants';
 
 jest.mock('../context', () => ({
   useSelectedProjectValue: jest.fn(),
@@ -78,6 +78,21 @@ describe('<AddProject />', () => {
         'Best project in the world!'
       );
       fireEvent.click(queryByTestId('add-project-submit'));
+      await waitFor(() =>
+        expect(queryByText('Best project in the world!')).toBeNull()
+      );
+    });
+    it('renders <AddProject /> and adds a project using onKeyDown', async () => {
+      const { queryByTestId, queryByText } = render(<AddProject shouldShow />);
+      expect(queryByTestId('add-project')).toBeTruthy();
+
+      fireEvent.change(queryByTestId('project-name'), {
+        target: { value: 'Best project in the world!' },
+      });
+      expect(queryByTestId('project-name').value).toBe(
+        'Best project in the world!'
+      );
+      fireEvent.keyDown(queryByTestId('add-project-submit'), Keys.Enter);
       await waitFor(() =>
         expect(queryByText('Best project in the world!')).toBeNull()
       );

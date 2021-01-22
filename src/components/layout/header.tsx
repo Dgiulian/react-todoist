@@ -38,7 +38,7 @@ export const Header = ({ darkMode, setDarkMode }: Props) => {
               <button
                 data-testid="dark-mode-action"
                 onClick={() => setDarkMode(!darkMode)}
-                onKeyDown={(e) => e.key === 'ENTER' && setDarkMode(!darkMode)}
+                onKeyDown={handleKeyDown(() => setDarkMode(!darkMode))}
               >
                 <FaPizzaSlice />
               </button>
