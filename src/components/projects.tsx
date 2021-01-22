@@ -19,7 +19,7 @@ export function Projects({ activeValue }: Props): ReactElement {
           <li
             key={project.projectId}
             data-doc-id={project.docId}
-            data-testid="project-action"
+            data-testid="project-action-parent"
             className={
               active === project.projectId
                 ? 'active sidebar__project'
@@ -27,14 +27,15 @@ export function Projects({ activeValue }: Props): ReactElement {
             }
           >
             <button
-              onKeyDown={handleKeyDown(() => {
-                setActive(project.projectId);
-                if (setSelectedProject) setSelectedProject(project.projectId);
-              })}
+              data-testid="project-action"
               onClick={() => {
                 setActive(project.projectId);
                 if (setSelectedProject) setSelectedProject(project.projectId);
               }}
+              onKeyDown={handleKeyDown(() => {
+                setActive(project.projectId);
+                if (setSelectedProject) setSelectedProject(project.projectId);
+              })}
             >
               <Project project={project} />
             </button>
