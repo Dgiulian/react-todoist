@@ -1,6 +1,7 @@
 import { addDays, format } from 'date-fns';
 import React, { Dispatch, SetStateAction } from 'react';
 import { FaRegPaperPlane, FaSpaceShuttle, FaSun } from 'react-icons/fa';
+import { handleKeyDown } from '../helpers';
 
 interface Props {
   setTaskDate: Dispatch<SetStateAction<string>>;
@@ -24,6 +25,10 @@ export const TaskDate = ({
               setShowTaskDate(false);
               setTaskDate(format(new Date(), 'yyyy-mm-dd'));
             }}
+            onKeyDown={handleKeyDown(() => {
+              setShowTaskDate(false);
+              setTaskDate(format(new Date(), 'yyyy-mm-dd'));
+            })}
           >
             <span>
               <FaSpaceShuttle />
@@ -38,6 +43,10 @@ export const TaskDate = ({
               setShowTaskDate(false);
               setTaskDate(format(addDays(new Date(), 1), 'yyyy-mm-dd'));
             }}
+            onKeyDown={handleKeyDown(() => {
+              setShowTaskDate(false);
+              setTaskDate(format(addDays(new Date(), 1), 'yyyy-mm-dd'));
+            })}
           >
             <span>
               <FaSun />
@@ -52,6 +61,10 @@ export const TaskDate = ({
               setShowTaskDate(false);
               setTaskDate(format(addDays(new Date(), 7), 'yyyy-mm-dd'));
             }}
+            onKeyDown={handleKeyDown(() => {
+              setShowTaskDate(false);
+              setTaskDate(format(addDays(new Date(), 7), 'yyyy-mm-dd'));
+            })}
           >
             <span>
               <FaRegPaperPlane />

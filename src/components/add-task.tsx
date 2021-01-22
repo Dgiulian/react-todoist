@@ -20,7 +20,7 @@ export const AddTask = ({
   shouldShowMain = false,
   showQuickAddTask = false,
   setShowQuickAddTask = (v) => {},
-}: Props) => {
+}: Partial<Props>) => {
   const [task, setTask] = useState('');
   const [taskDate, setTaskDate] = useState('');
   const [project, setProject] = useState('');
@@ -116,7 +116,7 @@ export const AddTask = ({
           <input
             type="text"
             className="add-task__content"
-            data-testid="data-test-content"
+            data-testid="add-task-content"
             value={task}
             onChange={(e) => setTask(e.target.value)}
           />
@@ -172,7 +172,7 @@ export const AddTask = ({
             </span>
             <span
               className="add-task__date"
-              data-testid="show-project-overlay"
+              data-testid="show-task-date-overlay"
               role="button"
               tabIndex={0}
               onClick={() => setShowTaskDate(!showTaskDate)}
