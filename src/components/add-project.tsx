@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useProjectValues } from '../context';
-import { generatePushId } from '../helpers';
+import { generatePushId, handleKeyDown } from '../helpers';
 import { firebase } from '../firebase';
 interface Props {
   shouldShow: boolean;
@@ -31,10 +31,11 @@ export const AddProject = ({ shouldShow }: Props) => {
   return (
     <div className="add-project" data-testid="add-project">
       {show && (
-        <div className="add-project__input">
+        <div className="add-project__input" data-testid="add-project-inner">
           <input
             type="text"
             value={projectName}
+            data-testid="project-name"
             onChange={(e) => setProjectName(e.target.value)}
             placeholder="Name your project"
           />
@@ -43,6 +44,7 @@ export const AddProject = ({ shouldShow }: Props) => {
             type="button"
             data-testid="add-project-submit"
             onClick={() => addProject()}
+            onKeyDown={handleKeyDown(() => addProject())}
           >
             Add
           </button>
@@ -51,12 +53,17 @@ export const AddProject = ({ shouldShow }: Props) => {
             type="button"
             data-testid="add-project-cancel"
             onClick={() => setShow(false)}
+            onKeyDown={handleKeyDown(() => setShow(false))}
           >
             Cancel
           </button>
         </div>
       )}
-      <div className="add-project__btn" onClick={() => setShow(!show)}>
+      <div
+        className="add-project__btn"
+        onClick={() => setShow(!show)}
+        onKeyDown={handleKeyDown(() => setShow(!show))}
+      >
         <span data-testid="add-project-plus" className="add-project__plus">
           +
         </span>
