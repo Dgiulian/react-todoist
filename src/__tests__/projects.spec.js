@@ -3,16 +3,7 @@ import { render, fireEvent, cleanup } from '@testing-library/react';
 import { useProjectValues } from '../context';
 
 import { Projects } from '../components/projects';
-const Keys = {
-  Enter: {
-    key: 'Enter',
-    code: 13,
-  },
-  a: {
-    key: 'a',
-    code: 65,
-  },
-};
+import { Keys } from './constants';
 
 beforeEach(cleanup);
 

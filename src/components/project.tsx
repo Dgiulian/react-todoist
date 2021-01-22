@@ -3,6 +3,7 @@ import { firebase } from '../firebase';
 import { useProjectValues, useSelectedProjectValue } from '../context';
 import { Project } from '../hooks';
 import { FaTrashAlt } from 'react-icons/fa';
+import { handleKeyDown } from '../helpers';
 interface Props {
   project: Project;
 }
@@ -34,6 +35,7 @@ const ProjectComponent = ({ project }: Props) => {
         className="sidebar__project-delete"
         data-testid="delete-project"
         onClick={() => setShowConfirm(true)}
+        onKeyDown={handleKeyDown(() => setShowConfirm(true))}
       >
         <FaTrashAlt />
       </span>
